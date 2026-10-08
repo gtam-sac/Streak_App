@@ -17,19 +17,12 @@ class StreakApp extends StatefulWidget {
 }
 
 class _StreakAppState extends State<StreakApp> {
-  bool _isDarkMode = false;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Streak Flame',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFFFFBF7),
-      ),
-      darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.deepOrange,
           brightness: Brightness.dark,
@@ -37,24 +30,13 @@ class _StreakAppState extends State<StreakApp> {
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFF121212),
       ),
-      themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
-      home: AppLoader(
-        isDarkMode: _isDarkMode,
-        onToggleTheme: () => setState(() => _isDarkMode = !_isDarkMode),
-      ),
+      home: const AppLoader(),
     );
   }
 }
 
 class AppLoader extends StatefulWidget {
-  const AppLoader({
-    super.key,
-    required this.isDarkMode,
-    required this.onToggleTheme,
-  });
-
-  final bool isDarkMode;
-  final VoidCallback onToggleTheme;
+  const AppLoader({super.key});
 
   @override
   State<AppLoader> createState() => _AppLoaderState();
@@ -99,8 +81,6 @@ class _AppLoaderState extends State<AppLoader> {
     return HomeScreen(
       state: _state!,
       storage: _storage,
-      isDarkMode: widget.isDarkMode,
-      onToggleTheme: widget.onToggleTheme,
     );
   }
 }

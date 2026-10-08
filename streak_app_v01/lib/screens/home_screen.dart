@@ -11,14 +11,10 @@ class HomeScreen extends StatefulWidget {
     super.key,
     required this.state,
     required this.storage,
-    required this.isDarkMode,
-    required this.onToggleTheme,
   });
 
   final AppState state;
   final StorageService storage;
-  final bool isDarkMode;
-  final VoidCallback onToggleTheme;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -63,13 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Streak Flame',
             style: TextStyle(fontWeight: FontWeight.bold)),
-        leading: IconButton(
-          tooltip: widget.isDarkMode
-              ? 'Switch to light mode'
-              : 'Switch to dark mode',
-          onPressed: widget.onToggleTheme,
-          icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
-        ),
         actions: [
           IconButton(
               onPressed: _editHabits, icon: const Icon(Icons.edit_outlined)),
